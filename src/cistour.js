@@ -141,8 +141,12 @@ export async function refreshCistourDetailsUrl({ searchId, searchUrl, roomId }, 
     redirect: "follow",
     signal: AbortSignal.timeout(30_000)
   });
+  const initBody = await initResponse.text();
   const cookie = readSetCookie(initResponse.headers);
-  if (!initResponse.ok) throw new Error(`Inițializarea Cistour a eșuat (HTTP ${initResponse.status}).`);
+  if (!initResponse.ok) {
+    console.error(`[Cistour] Init body: ${initBody.slice(0, 500)}`);
+    throw new Error(`Inițializarea Cistour a eșuat (HTTP ${initResponse.status}).`);
+  }
 
   const requestUri = new URL(searchUrl);
   requestUri.search = `?search_id=${encodeURIComponent(searchId)}`;
