@@ -1,5 +1,7 @@
+import { existsSync } from "node:fs";
+
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-process.loadEnvFile?.(".env");
+if (existsSync(".env")) process.loadEnvFile(".env");
 
 export const PURCHASE_PRICE = Number(process.env.PURCHASE_PRICE || 2084);
 export const CISTOUR_URL = process.env.CISTOUR_URL || "https://www.cistour.ro/packages/get_package_details/{searchId}/{hash}/daf-dominicana-exotic-light-republica-toate-locatiile-republica-dominicana/es-344ce6859025a8e05467d44f7150be67?get_details_for_room";
