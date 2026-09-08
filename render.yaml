@@ -20,3 +20,10 @@ services:
     buildCommand: npm install
     startCommand: npm run daily
     schedule: "0 6,7 * * *"
+    envVars:
+      - key: ALERT_EMAIL
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
