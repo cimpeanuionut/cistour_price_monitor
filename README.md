@@ -30,11 +30,6 @@ Nu salva cookie-uri Cistour. Serviciul creează o sesiune anonimă nouă la fiec
 ## Endpoint REST
 
 ```http
-GET /check-and-notify?url=<URL_CISTOUR_ENCODED>
-Authorization: Bearer <API_TOKEN>
-```
-
-```http
 POST /check-and-notify
 Authorization: Bearer <API_TOKEN>
 Content-Type: application/json
