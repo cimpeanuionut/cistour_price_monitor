@@ -1,0 +1,21 @@
+{
+  "name": "cistour-price-monitor",
+  "version": "1.0.0",
+  "description": "Verifică prețul unei excursii Cistour și trimite o alertă email colorată.",
+  "author": {
+    "name": "Ionut Cimpeanu"
+  },
+  "interface": {
+    "displayName": "Cistour Price Monitor",
+    "shortDescription": "Urmărește zilnic prețul excursiei Cistour.",
+    "longDescription": "Extrage camera din linkul Cistour, compară prețul curent cu prețul de cumpărare și poate trimite un email HTML colorat.",
+    "developerName": "Ionut Cimpeanu",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Write"],
+    "defaultPrompt": [
+      "Verifică prețul excursiei mele Cistour.",
+      "Verifică prețul și trimite-mi raportul pe email."
+    ]
+  },
+  "mcpServers": "./.mcp.json"
+}
