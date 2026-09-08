@@ -103,16 +103,20 @@ async function startHttp() {
 
   app.get("/health", (_req, res) => res.json({ ok: true }));
 
-  app.post("/check-and-notify", requireApiToken, async (req, res) => {
+  async function checkAndNotify(req, res) {
     try {
-      const result = await check(req.body?.url);
+      const url = req.method === "GET" ? req.query.url : req.body?.url;
+      const result = await check(url);
       await emailResult(result);
       res.json({ ...result, emailSent: true });
     } catch (error) {
       console.error(`[HTTP] /check-and-notify a eșuat: ${safeError(error)}`);
       res.status(422).json({ error: safeError(error) });
     }
-  });
+  }
+
+  app.post("/check-and-notify", requireApiToken, checkAndNotify);
+  app.get("/check-and-notify", requireApiToken, checkAndNotify);
 
   app.post("/mcp", requireApiToken, async (req, res) => {
     const server = createMcpServer();
