@@ -14,6 +14,10 @@ test("extrage camera din link", () => {
   assert.equal(parseCistourUrl(url).roomId, roomId);
 });
 
+test("acceptă URL Cistour copiat ca link Markdown", () => {
+  assert.equal(parseCistourUrl(`[ofertă](${url})`).roomId, roomId);
+});
+
 test("extrage price din payment_policies_rooms", () => {
   assert.deepEqual(extractRoomPrice(payload, roomId), {
     roomId,

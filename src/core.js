@@ -4,7 +4,9 @@ const DETAILS_PREFIX = "/packages/get_package_details/";
 export function parseCistourUrl(rawUrl) {
   let url;
   try {
-    url = new URL(rawUrl);
+    const value = String(rawUrl || "").trim();
+    const markdownUrl = value.match(/^\[([^\]]+)\]\((https?:\/\/[^)]+)\)$/);
+    url = new URL(markdownUrl ? markdownUrl[2] : value);
   } catch {
     throw new Error("Linkul nu este un URL valid.");
   }
